@@ -13,22 +13,36 @@
  *     }
  * }
  */
+ class Pair{
+    int level;
+    TreeNode node;
+    public Pair(int level,TreeNode node){
+        this.level=level;
+        this.node=node;
+    }
+ }
 class Solution {
     public List<Integer> rightSideView(TreeNode root) {
         List<Integer> ans=new ArrayList<>();
+        if(root == null) return ans;
+        Queue<Pair> q=new LinkedList<>();
+        q.add(new Pair(0,root));
+        
+        while(!q.isEmpty()){
+            Pair p=q.poll();
+            int level=p.level;
+            TreeNode node=p.node;
 
-        // Root->Right->Left
-        revPreOrder(root,0,ans);
+            if(level == ans.size())
+            ans.add(node.val);
+
+            if(node.right != null)
+            q.add(new Pair(level+1,node.right));
+
+            if(node.left != null)
+            q.add(new Pair(level+1,node.left));
+        }
 
         return ans;
-    }
-    void revPreOrder(TreeNode root,int level,List<Integer> ans){
-        if(root == null) return;
-
-        if(level == ans.size())
-        ans.add(root.val);
-
-        revPreOrder(root.right,level+1,ans);
-        revPreOrder(root.left,level+1,ans);
     }
 }
