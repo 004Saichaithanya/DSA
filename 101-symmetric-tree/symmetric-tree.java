@@ -21,7 +21,11 @@ class Solution {
     boolean inOrderCheck(TreeNode lNode,TreeNode rNode){
         if(lNode == null || rNode == null) return (lNode == rNode);
 
-return (lNode.val == rNode.val ) && inOrderCheck(lNode.left,rNode.right) && inOrderCheck(lNode.right,rNode.left);
+
+        if(lNode.val == rNode.val)
+        return inOrderCheck(lNode.left,rNode.right) && inOrderCheck(lNode.right,rNode.left);
+        else
+        return false;
 
        // return false;
     }
