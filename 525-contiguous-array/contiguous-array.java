@@ -9,18 +9,19 @@ class Solution {
         //(sum,firstIndex) ->(0,-1)
         map.put(0,-1);
         int maxLen=0;
-        int[] preSum=new int[n];
-        preSum[0]=nums[0];
-        map.put(preSum[0],0);
+       // int[] preSum=new int[n];
+       int sum=nums[0];
+        //preSum[0]=nums[0];
+      map.put(sum,0);
         
       //  sum=0;
         
         for(int i=1;i<n;i++){
-            preSum[i]=preSum[i-1]+nums[i];
-            if(!map.containsKey(preSum[i])){
-                map.put(preSum[i],i);
+            sum=sum+nums[i];
+            if(!map.containsKey(sum)){
+                map.put(sum,i);
             }else{
-                int len=i - map.get(preSum[i]);
+                int len=i - map.get(sum);
                 maxLen=Math.max(len,maxLen);
             }
             
