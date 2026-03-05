@@ -14,13 +14,16 @@
  * }
  */
 
- class BSTIteratorNext {
+ class BSTIterator {
 
     Stack<TreeNode> stk;
 
-    public BSTIteratorNext(TreeNode root) {
+    public BSTIterator(TreeNode root,boolean isReverse) {
         stk = new Stack<>();
+        if(isReverse == true)
         goLeft(root);
+        else
+        goRight(root);
     }
 
     public void goLeft(TreeNode root) {
@@ -40,18 +43,7 @@
         return node.val;
     }
 
-}
-
- class BSTIteratorBefore {
-
-    Stack<TreeNode> stk;
-
-    public BSTIteratorBefore(TreeNode root) {
-        stk = new Stack<>();
-        goRight(root);
-    }
-
-    public void goRight(TreeNode root) {
+        public void goRight(TreeNode root) {
         while (root != null) {
             stk.push(root);
             root = root.right;
@@ -69,21 +61,82 @@
     }
 
 }
+
+
+
+// class BSTIteratorNext {
+
+//     Stack<TreeNode> stk;
+
+//     public BSTIteratorNext(TreeNode root) {
+//         stk = new Stack<>();
+//         goLeft(root);
+//     }
+
+//     public void goLeft(TreeNode root) {
+//         while (root != null) {
+//             stk.push(root);
+//             root = root.left;
+//         }
+//     }
+
+//     public int next() {
+//         TreeNode node = null;
+//         if (!stk.isEmpty()) {
+//             node = stk.pop();
+//             if (node.right != null)
+//                 goLeft(node.right);
+//         }
+//         return node.val;
+//     }
+
+    
+
+// }
+
+// class BSTIteratorBefore {
+
+//     Stack<TreeNode> stk;
+
+//     public BSTIteratorBefore(TreeNode root) {
+//         stk = new Stack<>();
+//         goRight(root);
+//     }
+
+//     public void goRight(TreeNode root) {
+//         while (root != null) {
+//             stk.push(root);
+//             root = root.right;
+//         }
+//     }
+
+//     public int before() {
+//         TreeNode node = null;
+//         if (!stk.isEmpty()) {
+//             node = stk.pop();
+//             if (node.left != null)
+//                 goRight(node.left);
+//         }
+//         return node.val;
+//     }
+
+// }
+
 class Solution {
     public boolean findTarget(TreeNode root, int k) {
-        BSTIteratorNext nextObj=new BSTIteratorNext(root);
-        BSTIteratorBefore beforeObj=new BSTIteratorBefore(root);
+        BSTIterator nextObj = new BSTIterator(root,true);
+        BSTIterator beforeObj = new BSTIterator(root,false);
 
-            int i = nextObj.next();
-            int j=beforeObj.before();
+        int i = nextObj.next();
+        int j = beforeObj.before();
 
-        while(i<j){
-            if(i+j > k)
-            j=beforeObj.before();
-            else if(i+j < k)
-            i=nextObj.next();
+        while (i < j) {
+            if (i + j > k)
+                j = beforeObj.before();
+            else if (i + j < k)
+                i = nextObj.next();
             else
-            return true;
+                return true;
         }
 
         return false;
