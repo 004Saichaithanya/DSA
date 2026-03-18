@@ -13,8 +13,6 @@ class Solution {
                 end++;
             }
             avg=sum/k;
-            System.out.println(sum);
-              System.out.println(avg);
             maxAvg=Math.max(maxAvg, avg);
             sum -=nums[start];
             start++;
