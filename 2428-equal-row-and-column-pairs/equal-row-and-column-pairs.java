@@ -1,18 +1,36 @@
 class Solution {
     public int equalPairs(int[][] grid) {
-        int n=grid.length;
-        int cnt=0;
-        for(int i=0;i<n;i++){
-            for(int c=0;c<n;c++){
-                int k=0;
-                for( k = 0; k < n; k++){
-                    if(grid[k][c] != grid[i][k]) break;
-                }
-                    if(k == n){
-                    cnt++;
-                    }
+        //"3,2,1"(row) --> 1(freq)
+        HashMap<String, Integer> map = new HashMap<>();
+        int n = grid.length;
 
-             }
+        for (int i = 0; i < n; i++) {
+            StringBuilder str = new StringBuilder();
+            for (int j = 0; j < n; j++) {
+                if (j != n - 1)
+                    str.append(grid[i][j] + ",");
+                else
+                    str.append(grid[i][j]);
+            }
+            map.put(str.toString(), map.getOrDefault(str.toString(), 0) + 1);
+
+        }
+        // System.out.println(map);
+
+        int cnt = 0;
+
+        for (int j = 0; j < n; j++) {
+            StringBuilder str = new StringBuilder();
+            for (int i = 0; i < n; i++) {
+                if (i != n - 1)
+                    str.append(grid[i][j] + ",");
+                else
+                    str.append(grid[i][j]);
+
+            }
+            //     System.out.println(str.toString());
+            //    // if(map.containsKey(str.toString()))
+            cnt += map.getOrDefault(str.toString(), 0);
         }
 
         return cnt;
