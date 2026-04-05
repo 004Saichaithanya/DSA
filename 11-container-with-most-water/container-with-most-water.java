@@ -5,14 +5,14 @@ class Solution {
         int maxArea = 0;
         while (i < j) {
             maxArea = Math.max(maxArea, Math.min(height[i], height[j]) * (j - i));
-            if (height[i] <= height[j])
+            if (height[i] < height[j])
                 i++;
             else if (height[i] > height[j])
                 j--;
-            // else {
-            //     i++;
-            //     j--;
-            // }
+            else {
+                i++;
+                j--;
+            }
 
         }
 
