@@ -20,7 +20,8 @@ class Solution {
 
         left = recurFunc(i + 1, s, n, dp);
         if (i + 1 < n)
-            range = (s.charAt(i) - '0') * 10 + (s.charAt(i + 1) - '0');
+           // range = (s.charAt(i) - '0') * 10 + (s.charAt(i + 1) - '0');
+                range = Integer.parseInt(s.substring(i,i+2));
         if (i + 1 < n && range >= 10 && range <= 26)
             right = recurFunc(i + 2, s, n, dp);
 
