@@ -15,40 +15,20 @@ public class Solution {
             return null;
         ListNode t1 = headA;
         ListNode t2 = headB;
-        int Alen = 0, Blen = 0;
 
-        while (t1 != null) {
-            Alen++;
+        while (t1 != t2) {
             t1 = t1.next;
-        }
-
-        while (t2 != null) {
-            Blen++;
             t2 = t2.next;
-        }
-        int steps = Math.abs(Alen - Blen);
+                    
+            if(t1 == t2) return t1;
 
-        if (Alen >= Blen)
-            return collisionPoint(headA, headB, steps);
-        else if (Blen > Alen)
-            return collisionPoint(headB, headA, steps);
-
-        return null;
-    }
-
-    ListNode collisionPoint(ListNode large, ListNode small, int steps) {
-        while (steps > 0) {
-            large = large.next;
-            steps--;
-        }
-        while (large != null && small != null) {
-            if (large == small)
-                return large;
-            large = large.next;
-            small = small.next;
+            if (t1 == null)
+                t1 = headB;
+            if (t2 == null)
+                t2 = headA;
         }
 
-        return null;
+        return t1;
     }
 
 }
