@@ -22,7 +22,7 @@ class Solution {
         }
 
         //leading zeros
-        while (i < n && s.charAt(i) == 0) {
+        while (i < n && s.charAt(i) == '0') {
             i++;
         }
 
