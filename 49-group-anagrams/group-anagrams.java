@@ -8,15 +8,10 @@ class Solution {
             String key = isAnagram(temp);
 
             if (!map.containsKey(key))
-                map.put(key, new ArrayList<>(Arrays.asList(temp)));
-            else
-                map.get(key).add(temp);
+                map.put(key, new ArrayList<>());
+            
+            map.get(key).add(temp);
         }
-        // for(List<String> temp : map.values()){
-        //     for(String x : temp)
-        //         System.out.print(x+" ");
-        //     System.out.println();
-        // }
 
         return new ArrayList<>(map.values());
     }
