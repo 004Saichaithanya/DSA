@@ -6,5 +6,4 @@ WHERE primary_flag = 'Y' OR employee_id IN (
     FROM Employee
     GROUP BY employee_id
     HAVING COUNT(department_id ) = 1
-)
-GROUP BY employee_id;
+);
