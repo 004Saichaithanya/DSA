@@ -3,7 +3,7 @@ class Solution {
         PriorityQueue<Integer> pq = new PriorityQueue<>(Collections.reverseOrder());
 
         for (int x : nums)
-            pq.add(x);
+            pq.offer(x);
 
         long ans = 0;
         int i = 0;
@@ -12,10 +12,11 @@ class Solution {
             int ele = pq.poll();
             //  System.out.println(ele);
             ans += ele;
-            int val = (int) Math.ceil((double) ele / 3);
+            // int val = (int) Math.ceil((double) ele / 3);
+            int val = (ele + 2)/3;
             // System.out.println(Math.ceil((double)ele/3));
-            if(val > 0)
-            pq.add(val);
+            // if (val > 0)
+                pq.add(val);
             i++;
         }
 
