@@ -14,6 +14,7 @@ class Solution {
             ans += ele;
             int val = (int) Math.ceil((double) ele / 3);
             // System.out.println(Math.ceil((double)ele/3));
+            if(val > 0)
             pq.add(val);
             i++;
         }
