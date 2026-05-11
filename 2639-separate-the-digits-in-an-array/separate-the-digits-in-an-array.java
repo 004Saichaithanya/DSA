@@ -1,14 +1,13 @@
 class Solution {
     public int[] separateDigits(int[] nums) {
         int n = nums.length;
+
         List<Integer> list = new ArrayList<>();
 
-        for(int i = 0 ; i < n ; i++) {
-            String num = Integer.toString(nums[i]);
-            int index = 0;
-            while(index < num.length()) {
-                list.add(num.charAt(index) - '0');
-                index++;
+        for(int x : nums) {
+            String num = Integer.toString(x);
+            for(char ch : num.toCharArray()){
+                list.add(ch - '0');
             }
         }
 
